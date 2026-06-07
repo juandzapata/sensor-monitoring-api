@@ -1,0 +1,1 @@
+from app.routers import sensors, zones, monitorings
