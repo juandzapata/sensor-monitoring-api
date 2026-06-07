@@ -10,12 +10,18 @@ from app.schemas.monitoring import MonitoringCreate, MonitoringUpdate, Monitorin
 router = APIRouter(prefix="/monitorings", tags=["monitorings"])
 
 @router.get("/", response_model=list[MonitoringResponse])
-def get_monitorings(status: Optional[str] = None, db: Session = Depends(get_db)):
+def get_monitorings(
+    status: Optional[str] = None,
+    zone_id: Optional[int] = None,
+    db: Session = Depends(get_db)
+):
     query = db.query(Monitoring)
     if status:
         if status not in ("activo", "pausado"):
             raise HTTPException(status_code=400, detail="El parámetro status debe ser 'activo' o 'pausado'")
         query = query.filter(Monitoring.estado_monitoreo == status)
+    if zone_id:
+        query = query.filter(Monitoring.zone_id == zone_id)
     return query.all()
 
 @router.post("/", response_model=MonitoringResponse, status_code=201)
