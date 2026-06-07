@@ -5,8 +5,13 @@ from app.models.zone import Zone
 from app.models.monitoring import Monitoring
 from app.models.sensor import Sensor
 from app.schemas.sensor import SensorResponse
+from app.schemas.zone import ZoneResponse
 
 router = APIRouter(prefix="/zones", tags=["zones"])
+
+@router.get("/", response_model=list[ZoneResponse])
+def get_zones(db: Session = Depends(get_db)):
+    return db.query(Zone).all()
 
 @router.get("/{zone_id}/sensors", response_model=list[SensorResponse])
 def get_sensors_by_zone(zone_id: int, db: Session = Depends(get_db)):

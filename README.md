@@ -93,6 +93,7 @@ uvicorn app.main:app --reload
 
 | Método | Ruta                    | Descripción                              |
 |--------|-------------------------|------------------------------------------|
+| GET    | `/zones`                | Lista todas las zonas                    |
 | GET    | `/zones/{id}/sensors`   | Sensores activos en una zona             |
 
 ### Monitorings
