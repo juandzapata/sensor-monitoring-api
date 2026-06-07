@@ -2,7 +2,6 @@
 
 API REST para la gestión de sensores industriales y su asignación a zonas de monitoreo. Permite registrar qué sensores están instalados en qué zonas de una planta industrial, con qué tipo de lectura operan, y hacer seguimiento de sus valores actuales frente a umbrales definidos.
 
-El modelo central es la relación muchos-a-muchos entre `sensors` y `zones`, mediada por `monitorings`: un mismo sensor puede estar en varias zonas con distintos tipos de lectura, y una zona puede tener múltiples sensores activos.
 
 ## Stack
 
