@@ -57,7 +57,10 @@ Editar `.env` con las credenciales de Supabase o PostgreSQL local:
 
 ```env
 DATABASE_URL=postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
+CORS_ORIGINS=http://localhost:5173
 ```
+
+`CORS_ORIGINS` acepta múltiples orígenes separados por coma. Si se omite, usa `http://localhost:5173` por defecto.
 
 En caso de utilizar Supabase y tener problemas de conexión por el método direct, se recomienda usar el Connection Session Pooler.
 
@@ -100,7 +103,7 @@ uvicorn app.main:app --reload
 
 | Método | Ruta                    | Descripción                                            |
 |--------|-------------------------|--------------------------------------------------------|
-| GET    | `/monitorings`          | Lista monitoreos; filtro opcional `?status=activo\|pausado` |
+| GET    | `/monitorings`          | Lista monitoreos; filtros opcionales `?status=activo\|pausado`, `?zone_id={id}` |
 | POST   | `/monitorings`          | Crea un monitoreo (valida sensor, zona y duplicados)   |
 | PATCH  | `/monitorings/{id}`     | Actualiza `valor_umbral`, `valor_actual` o `estado_monitoreo` |
 
