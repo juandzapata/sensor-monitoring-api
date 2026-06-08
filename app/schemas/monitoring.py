@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from datetime import date
+from datetime import date, datetime
 from typing import Optional
 
 class MonitoringCreate(BaseModel):
@@ -18,6 +18,8 @@ class MonitoringUpdate(BaseModel):
 
 class MonitoringResponse(MonitoringCreate):
     id: int
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         from_attributes = True
